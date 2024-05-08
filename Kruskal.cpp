@@ -87,7 +87,9 @@ int main() {
         // Retrieve vertex names from the map for output
         string sourceName = "";
         string destinationName = "";
-        for (auto const& [name, index] : vertexIndices) {
+        for (auto const& entry : vertexIndices) {
+            name=entry.first;
+            index= entry.second;
             if (index == edge.src) {
                 sourceName = name;
             }
