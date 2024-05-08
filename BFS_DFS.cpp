@@ -7,7 +7,6 @@ using namespace std;
 const int N = 1e5 + 2;
 bool vis[N];
 vector<int> adj[N];
-queue<int> q;
 
 void setVisitedtoZero(bool vis[]) {
     for(int i = 0; i < N; i++) {
@@ -15,39 +14,43 @@ void setVisitedtoZero(bool vis[]) {
     }
 }
 
-void DFS(int node) {
+void DFS(int node, int level) {
     vis[node] = true;
-    cout << node << " ";
+    cout << "Node: " << node << ", Level: " << level << endl;
 
     for(int next : adj[node]) {
         if(!vis[next]) {
-            DFS(next);
+            DFS(next, level + 1); // Increment level for the next node
         }
     }
 }
 
-void BFS_recursive() {
-    if(q.empty())
+void BFS_recursive(queue<pair<int, int>>& q) {
+    if (q.empty())
         return;
 
-    int node = q.front();
+    pair<int, int> current = q.front();
     q.pop();
-    cout << node << " ";
+    int node = current.first;
+    int level = current.second;
+
+    cout << "Node: " << node << ", Level: " << level << endl;
 
     for(int next : adj[node]) {
-        if(!vis[next]) {
+        if (!vis[next]) {
             vis[next] = true;
-            q.push(next);
+            q.push({next, level + 1}); // Increment level for the next node
         }
     }
 
-    BFS_recursive(); // Recur for the rest of the queue
+    BFS_recursive(q); // Recur for the rest of the queue
 }
 
 void BFS(int startNode) {
-    q.push(startNode);
+    queue<pair<int, int>> q;
+    q.push({startNode, 0}); // Start node with level 0
     vis[startNode] = true;
-    BFS_recursive();
+    BFS_recursive(q);
 }
 
 int main() {
@@ -77,7 +80,7 @@ int main() {
                 cin >> node;
                 cout << "\nDFS:\n";
                 setVisitedtoZero(vis);
-                DFS(node);
+                DFS(node, 0); // Start with level 0
                 break;
 
             case 2:
@@ -92,5 +95,3 @@ int main() {
 
     return 0;
 }
-
-
