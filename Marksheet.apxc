@@ -1,0 +1,44 @@
+
+public class Marksheet 
+{
+    public void generate_marksheet(String name, Integer Maths, Integer Science, Integer English)
+    {
+        Decimal totalmarks= Maths+Science+English;
+        Decimal percentage= (totalmarks/300)*100;
+        String grade;
+        if(percentage>=90)
+        {
+            grade='A+';
+        }
+        else if(percentage>=80)
+        {
+            grade='A';
+        }
+        else if(percentage>=70)
+        {
+            grade='B';
+        }
+        else if(percentage>=60)
+        {
+            grade='C';
+        }
+        else if(percentage>=50)
+        {
+            grade='D';
+        }
+        else
+        {
+            grade='F';
+        }
+        System.debug('Student name= '+name);
+        System.debug('Maths= '+ Maths);
+        System.debug('Sceince= '+ Science);
+        System.debug('English= '+English);
+        System.debug('Total= '+totalmarks);
+        System.debug('Percentage= '+percentage);
+        System.debug('Grade= '+grade);
+        
+        
+    }
+
+}
