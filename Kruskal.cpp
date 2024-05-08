@@ -88,8 +88,8 @@ int main() {
         string sourceName = "";
         string destinationName = "";
         for (auto const& entry : vertexIndices) {
-            name=entry.first;
-            index= entry.second;
+            string name=entry.first;
+            int index= entry.second;
             if (index == edge.src) {
                 sourceName = name;
             }
