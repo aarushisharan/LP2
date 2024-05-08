@@ -1,0 +1,7 @@
+public class TempConverter {
+    public void convert(Decimal celsius) {
+        Decimal fahrenheit = 32 + (1.8 * celsius);
+        System.debug('Temperature in Celsius: ' + celsius);
+        System.debug('Temperature in Fahrenheit: ' + fahrenheit);
+    }
+}
